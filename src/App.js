@@ -8,7 +8,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 
 // firebase
-import firebase from "firebase/app";
+import { initializeApp } from "firebase/app";
 import "firebase/auth";
 
 // components
@@ -17,6 +17,12 @@ import Signin from "./views/Signin";
 import Signup from "./views/Signup";
 import NotFound from "./views/NotFound";
 import { UserContext } from "./context/UserContext";
+import Footer from "./components/layouts/Footer";
+import Header from "./components/layouts/Header";
+import firebaseConfig from "./config/firebaseConfig";
+
+//initialize firebase
+initializeApp(firebaseConfig);
 
 function App() {
   const [user, setUser] = useState(null);
@@ -25,12 +31,14 @@ function App() {
     <Router>
       <ToastContainer />
       <UserContext.Provider value={{ user, setUser }}>
+        <Header />
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/signin" element={<Signin />}></Route>
           <Route path="/signup" element={<Signup />}></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
+        <Footer />
       </UserContext.Provider>
     </Router>
   );
