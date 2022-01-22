@@ -8,8 +8,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 
 // firebase
-import { initializeApp } from "firebase/app";
-import "firebase/auth";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
 
 // components
 import Home from "./views/Home";
@@ -22,7 +22,7 @@ import Header from "./components/layouts/Header";
 import firebaseConfig from "./config/firebaseConfig";
 
 //initialize firebase
-initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 
 function App() {
   const [user, setUser] = useState(null);
